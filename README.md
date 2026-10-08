@@ -10,7 +10,7 @@ Start by:
 4. Provide links to ALL historical Sprint Backlogs in the “Previous Sprint Backlogs” section.
 
 The template includes a starter Product Backlog and Sprint Backlog.
-- [Product Backlog](backlogs/product-backlog.md/)
+- [Product Backlog](backlogs/product-backlog.md)
 - [Sprint 04 Backlog](backlogs/sprint-04-backlog.md)
 
 Previous Sprint Backlogs:
