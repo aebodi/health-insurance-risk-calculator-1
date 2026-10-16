@@ -1,8 +1,7 @@
 # *Getting to Know Each Other Teams* and *Health Insurance Risk Calculator* Backlogs 
 
 This template provides a starting point for your [Getting to Know Each Other Teams](https://www.lewisuniversity.org/activity/getting-to-know-each-other-teams) and
-[Health Insurance Risk Calculator for the Web As A Team](https://www.lewisuniversity.org/activity/health-risk-calculator-team-web). 
-
+[Health Insurance Risk Calculator for the Web As A Team](https://github.com/aebodi/health-insurance-risk-calculator-1).
 Start by:
 1. Using this template to create a GitHub Pages website named after your team (CamelCase).
 2. Update the README.md file to reflect that this is your [Getting to Know Each Other Teams](https://www.lewisuniversity.org/activity/getting-to-know-each-other-teams) project. 
@@ -18,10 +17,10 @@ Previous Sprint Backlogs:
 
 ## Health Insurance Risk Calculator (client)
 `team.html` is our Getting to Know Each Other team page. `index.html` is the calculator page. It does no calculations; it calls the
-[HIRC server](https://github.com/aebodi/HIRC---server) APIs and shows the result.
+[HIRC server](https://github.com/IanJ321/health-insurance-calc-node) APIs and shows the result.
 
 Build: none (static HTML).
 Run: start the server locally (`npm start` in HIRC---server), then open `index.html` in a browser.
 Deployed as an Azure Static Web App; set the server URL in the `api` constant in `index.html`.
 
-Credits: page drafted with Claude (Anthropic); see the header comment in `index.html`.
+
