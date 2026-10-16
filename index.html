@@ -1,77 +1,152 @@
+<!--
+	AI use: Claude (Opus 5.5) generated this form, the API calls, and the result display from the
+	team's Sprint 4 backlog stories; reviewed by the team. All calculations are done by the server.
+-->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Team</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #333;
-      color: white;
-      padding: 20px 0;
-    }
-    main {
-      padding: 20px;
-    }
-    .team-photo {
-      width: 80%;
-      max-width: 600px;
-      margin: 20px auto;
-      display: block;
-      border: 3px solid #ccc;
-    }
-    ul {
-      list-style-type: none;
-      padding: 0;
-    }
-    li {
-      margin: 10px 0;
-    }
-    a {
-      color: #0077cc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    section {
-      margin-top: 40px;
-    }
-  </style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Health Insurance Risk Calculator</title>
+	<style>
+		body { font-family: system-ui, sans-serif; max-width: 640px; margin: 20px auto; padding: 0 16px;
+			color: #222; line-height: 1.45; }
+		h1 { margin-bottom: 4px; }
+		.subtitle { color: #555; margin-top: 0; }
+		section { border: 1px solid #ddd; border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
+		label { display: block; margin: 8px 0; }
+		input[type=number] { width: 70px; }
+		button { padding: 8px 20px; margin-top: 8px; cursor: pointer; }
+		img { max-width: 100%; height: auto; }
+		.hint { color: #555; font-size: 0.9em; }
+		.error { color: #c00; }
+		#result h2 { margin-top: 0; }
+	</style>
 </head>
 <body>
-  <header>
-    <h2>*** Your team should replace this entirely with something uniquely your own ***</h2>
-    <h1>Welcome to Our Starter Scrum Team Page</h1>
-    <h2>Generate by ChatGPT (with a little help from Eric)</h2>
-  </header>
-  <main>
-    <h2>Meet the Team</h2>
-    <!-- Replace with your own image and map coordinates -->
-    <img src="team-photo.jpg" usemap="#teammap" alt="Team Photo" class="team-photo">
+	<h1>Health Insurance Risk Calculator</h1>
+	<p class="subtitle">Estimate your health insurance risk category in under a minute.</p>
 
-    <map name="teammap">
-      <area shape="rect" coords="49,50,150,150" href="https://github.com/EricJPogue" alt="Eric Pogue">
-      <area shape="rect" coords="160,50,260,150" href="member2.html" alt="Member 2">
-      <!-- Add more areas per team member -->
-    </map>
+	<section>
+		<h2>How it works</h2>
+		<p>Enter your age, height, weight, blood pressure, and family history. The calculator works out your
+			BMI and blood pressure category, then adds up risk points for each factor. The total puts you in one
+			of these categories: <strong>low risk</strong>, <strong>moderate risk</strong>,
+			<strong>high risk</strong>, or <strong>uninsurable</strong>.</p>
+		<p class="hint">This is an estimate for a class project, not medical or insurance advice.</p>
+	</section>
 
-    <ul>
-      <li><a href="https://github.com/EricJPogue">Eric Pogue (epogue@lewisu.edu)</a></li>
-      <li><a href="member2.html">Member 2</a></li>
-      <!-- Add more team members -->
-    </ul>
+	<section>
+		<h2>Your information</h2>
+		<form id="riskForm">
+			<label>Age <input id="age" type="number" min="1" max="120" required></label>
+			<label>Height
+				<input id="feet" type="number" min="2" required> ft
+				<input id="inches" type="number" min="0" max="11" value="0" required> in
+			</label>
+			<label>Weight <input id="weight" type="number" min="1" required> lbs</label>
+			<label>Blood pressure
+				<select id="systolic"></select> /
+				<select id="diastolic"></select>
+			</label>
+			<p class="hint">Systolic (top number) / diastolic (bottom number). Not sure what yours means? See the
+				chart below.</p>
+			<p>Family history (check any that apply to a parent or sibling):</p>
+			<label><input type="checkbox" name="family" value="diabetes"> Diabetes</label>
+			<label><input type="checkbox" name="family" value="cancer"> Cancer</label>
+			<label><input type="checkbox" name="family" value="alzheimers"> Alzheimer’s</label>
+			<button type="submit">Calculate</button>
+		</form>
+	</section>
 
-    <section id="repository-and-backlogs">
-      <p>[[team-name-in-camel-case]]GitHub Repository: <a href="#">[[team-github-repository-url]]</a></p>
-    </section>
-  </main>
+	<div id="result"></div>
+
+	<section>
+		<h2>Blood pressure guide</h2>
+		<img src="static/bpChart.png" alt="Blood pressure categories chart: normal is below 120 over 80;
+			elevated is 120 to 129 over below 80; stage 1 hypertension is 130 to 139 or 80 to 89; stage 2
+			is 140 or higher or 90 or higher; hypertensive crisis is above 180 and/or above 120.">
+		<p class="hint">Source: American Heart Association.</p>
+	</section>
+
+	<section>
+		<h2>Our team</h2>
+		<img src="static/team-photo.jpg" alt="Team photo">
+		<ul>
+			<li>Ian Jung, Product Owner</li>
+			<li>Andres Bodington, Scrum Master</li>
+			<li>Abdul Rahman</li>
+			<li>David Woloszczuk</li>
+		</ul>
+		<p><a href="team.html">Team page and backlogs</a></p>
+	</section>
+
+	<script>
+		const isLocal = location.protocol === 'file:' || location.hostname === 'localhost';
+		const api = isLocal ? 'http://localhost:3000' : 'https://REPLACE-WITH-AZURE-SERVER.azurewebsites.net';
+
+		function fillSelect(id, from, to, selected) {
+			const select = document.getElementById(id);
+			for (let value = from; value <= to; value++) {
+				select.add(new Option(value, value, false, value === selected));
+			}
+		}
+		fillSelect('systolic', 80, 200, 120);
+		fillSelect('diastolic', 50, 130, 80);
+
+		async function callApi(path, body) {
+			console.log('Calling', path, body ?? '');
+			const response = await fetch(api + path, body && {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify(body),
+			});
+			const data = await response.json();
+			console.log('Response from', path, data);
+			if (!response.ok) throw new Error(data.errors.join(' '));
+			return data;
+		}
+
+		callApi('/ping').catch((err) => console.log('Ping failed:', err.message));
+
+		document.getElementById('riskForm').addEventListener('submit', async (event) => {
+			event.preventDefault();
+			const value = (id) => Number(document.getElementById(id).value);
+			const input = {
+				age: value('age'),
+				feet: value('feet'),
+				inches: value('inches'),
+				weight: value('weight'),
+				systolic: value('systolic'),
+				diastolic: value('diastolic'),
+				family: [...document.querySelectorAll('input[name=family]:checked')].map((box) => box.value),
+			};
+			const result = document.getElementById('result');
+			result.textContent = 'Calculating…';
+			try {
+				const [bmi, bp] = await Promise.all([
+					callApi('/bmi', { feet: input.feet, inches: input.inches, weight: input.weight }),
+					callApi('/bp-category', { systolic: input.systolic, diastolic: input.diastolic }),
+				]);
+				const risk = await callApi('/risk', {
+					age: input.age,
+					bmiCategory: bmi.category,
+					bpCategory: bp.category,
+					family: input.family,
+				});
+				result.innerHTML = `<section>
+					<h2>Result: ${risk.riskCategory}</h2>
+					<p>Age: ${input.age}</p>
+					<p>Height: ${input.feet} ft ${input.inches} in, Weight: ${input.weight} lbs</p>
+					<p>BMI: ${bmi.bmi} (${bmi.category})</p>
+					<p>Blood pressure: ${input.systolic}/${input.diastolic} (${bp.category})</p>
+					<p>Family history: ${input.family.join(', ') || 'none'}</p>
+					<p>Total points: ${risk.total}</p></section>`;
+			} catch (err) {
+				result.innerHTML = '<p class="error"></p>';
+				result.firstChild.textContent = err.message;
+			}
+		});
+	</script>
 </body>
 </html>

@@ -15,3 +15,13 @@ The template includes a starter Product Backlog and Sprint Backlog.
 
 Previous Sprint Backlogs:
 - [[Sprint XX Backlog]]
+
+## Health Insurance Risk Calculator (client)
+`team.html` is our Getting to Know Each Other team page. `index.html` is the calculator page. It does no calculations; it calls the
+[HIRC server](https://github.com/aebodi/HIRC---server) APIs and shows the result.
+
+Build: none (static HTML).
+Run: start the server locally (`npm start` in HIRC---server), then open `index.html` in a browser.
+Deployed as an Azure Static Web App; set the server URL in the `api` constant in `index.html`.
+
+Credits: page drafted with Claude (Anthropic); see the header comment in `index.html`.
