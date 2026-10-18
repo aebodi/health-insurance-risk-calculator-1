@@ -1,24 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Health Insurance Risk Calculator</title>
 	<style>
-		body { font-family: system-ui, sans-serif; max-width: 640px; margin: 20px auto; padding: 0 16px;
-			color: #222; line-height: 1.45; }
-		h1 { margin-bottom: 4px; }
-		.subtitle { color: #555; margin-top: 0; }
-		section { border: 1px solid #ddd; border-radius: 8px; padding: 12px 16px; margin: 16px 0; }
-		label { display: block; margin: 8px 0; }
-		input[type=number] { width: 70px; }
-		button { padding: 8px 20px; margin-top: 8px; cursor: pointer; }
-		img { max-width: 100%; height: auto; }
-		.hint { color: #555; font-size: 0.9em; }
-		.error { color: #c00; }
-		#result h2 { margin-top: 0; }
+		body {
+			font-family: system-ui, sans-serif;
+			max-width: 640px;
+			margin: 20px auto;
+			padding: 0 16px;
+			color: #222;
+			line-height: 1.45;
+		}
+
+		h1 {
+			margin-bottom: 4px;
+		}
+
+		.subtitle {
+			color: #555;
+			margin-top: 0;
+		}
+
+		section {
+			border: 1px solid #ddd;
+			border-radius: 8px;
+			padding: 12px 16px;
+			margin: 16px 0;
+		}
+
+		label {
+			display: block;
+			margin: 8px 0;
+		}
+
+		input[type=number] {
+			width: 70px;
+		}
+
+		button {
+			padding: 8px 20px;
+			margin-top: 8px;
+			cursor: pointer;
+		}
+
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+
+		.hint {
+			color: #555;
+			font-size: 0.9em;
+		}
+
+		.error {
+			color: #c00;
+		}
+
+		#result h2 {
+			margin-top: 0;
+		}
 	</style>
 </head>
+
 <body>
 	<h1>Health Insurance Risk Calculator</h1>
 	<p class="subtitle">Estimate your health insurance risk category in under a minute.</p>
@@ -28,7 +75,8 @@
 		<p>Enter your age, height, weight, blood pressure, and family history. The calculator works out your
 			BMI and blood pressure category, then adds up risk points for each factor. The total puts you in one
 			of these categories: <strong>low risk</strong>, <strong>moderate risk</strong>,
-			<strong>high risk</strong>, or <strong>uninsurable</strong>.</p>
+			<strong>high risk</strong>, or <strong>uninsurable</strong>.
+		</p>
 		<p class="hint">This is an estimate for a class project, not medical or insurance advice.</p>
 	</section>
 
@@ -79,7 +127,7 @@
 
 	<script>
 		const isLocal = location.protocol === 'file:' || location.hostname === 'localhost';
-		const api = isLocal ? 'http://localhost:3000' : 'https://REPLACE-WITH-AZURE-SERVER.azurewebsites.net';
+		const api = isLocal ? 'http://localhost:3000' : 'https://health-calc-node-hzajf2dcajdshgbw.centralus-01.azurewebsites.net/';
 
 		function fillSelect(id, from, to, selected) {
 			const select = document.getElementById(id);
@@ -145,4 +193,5 @@
 		});
 	</script>
 </body>
+
 </html>
