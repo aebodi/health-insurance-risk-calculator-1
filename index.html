@@ -127,7 +127,7 @@
 
 	<script>
 		const isLocal = location.protocol === 'file:' || location.hostname === 'localhost';
-		const api = isLocal ? 'http://localhost:3000' : 'https://health-calc-node-hzajf2dcajdshgbw.centralus-01.azurewebsites.net/';
+		const api = isLocal ? 'http://localhost:3000' : 'https://health-calc-node-hzajf2dcajdshgbw.centralus-01.azurewebsites.net';
 
 		function fillSelect(id, from, to, selected) {
 			const select = document.getElementById(id);
@@ -172,7 +172,7 @@
 					callApi('/bmi', { feet: input.feet, inches: input.inches, weight: input.weight }),
 					callApi('/bp-category', { systolic: input.systolic, diastolic: input.diastolic }),
 				]);
-				const risk = await callApi('/risk', {
+				const risk = await callApi('/risk-category', {
 					age: input.age,
 					bmiCategory: bmi.category,
 					bpCategory: bp.category,
