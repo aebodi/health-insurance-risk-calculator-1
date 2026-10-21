@@ -140,7 +140,7 @@
 
 		async function callApi(path, body) {
 			console.log('Calling', path, body ?? '');
-			const response = await fetch( api + path, body ? {
+			const response = await fetch(api + path, body ? {
 				method: 'POST',
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify(body),
@@ -151,7 +151,7 @@
 			return data;
 		}
 
-		callApi('/ping').catch((err) => console.log('Ping failed:', err.message));
+		callApi('/wakeAPI').catch((err) => console.log('Ping failed:', err.message));
 
 		document.getElementById('riskForm').addEventListener('submit', async (event) => {
 			event.preventDefault();
@@ -163,20 +163,20 @@
 				weight: value('weight'),
 				systolic: value('systolic'),
 				diastolic: value('diastolic'),
-				family: [...document.querySelectorAll('input[name=family]:checked')].map((box) => box.value),
+				familyHistory: [...document.querySelectorAll('input[name=family]:checked')].map((box) => box.value),
 			};
 			const result = document.getElementById('result');
 			result.textContent = 'Calculating…';
 			try {
 				const [bmi, bp] = await Promise.all([
-					callApi('/bmi', { feet: input.feet, inches: input.inches, weight: input.weight }),
-					callApi('/bp-category', { systolic: input.systolic, diastolic: input.diastolic }),
+					callApi('/bmiAPI', { feet: input.feet, inches: input.inches, weight: input.weight }),
+					callApi('/bpCategoriesAPI', { systolic: input.systolic, diastolic: input.diastolic }),
 				]);
-				const risk = await callApi('/risk', {
+				const risk = await callApi('/riskCalculationAPI', {
 					age: input.age,
 					bmiCategory: bmi.category,
 					bpCategory: bp.category,
-					family: input.family,
+					familyHistory: input.familyHistory,
 				});
 				result.innerHTML = `<section>
 					<h2>Result: ${risk.riskCategory}</h2>
@@ -184,7 +184,7 @@
 					<p>Height: ${input.feet} ft ${input.inches} in, Weight: ${input.weight} lbs</p>
 					<p>BMI: ${bmi.bmi} (${bmi.category})</p>
 					<p>Blood pressure: ${input.systolic}/${input.diastolic} (${bp.category})</p>
-					<p>Family history: ${input.family.join(', ') || 'none'}</p>
+					<p>Family history: ${input.familyHistory.join(', ') || 'none'}</p>
 					<p>Total points: ${risk.total}</p></section>`;
 			} catch (err) {
 				result.innerHTML = '<p class="error"></p>';
