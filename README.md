@@ -14,6 +14,7 @@ The template includes a starter Product Backlog and Sprint Backlog.
 
 Previous Sprint Backlogs:
 - [[Sprint XX Backlog]]
+- Verified clone, run, commit, and push - David Woloszczuk
 
 ## Health Insurance Risk Calculator (client)
 `team.html` is our Getting to Know Each Other team page. `index.html` is the calculator page. It does no calculations; it calls the
